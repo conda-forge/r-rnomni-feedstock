@@ -1,4 +1,4 @@
-{% set version = '1.0.0' %}
+{% set version = "1.0.1" %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -11,10 +11,10 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/RNOmni_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/RNOmni/RNOmni_{{ version }}.tar.gz
-  sha256: 7b4ea6b98167dff4632d9d546368cb652d291641f6b45cea1aec6fe6b9f6c0fe
+  sha256: 86d6240ace51b9f34d319fc7b16c994c6e48a7bce3bb28946eaaa588ae238755
 
 build:
-  merge_build_host: True  # [win]
+  merge_build_host: true  # [win]
   number: 0
   rpaths:
     - lib/R/lib/
@@ -55,21 +55,13 @@ test:
 about:
   home: https://CRAN.R-project.org/package=RNOmni
   license: GPL-3.0-only
-  summary: Inverse normal transformation (INT) based genetic association testing. These tests
-    are recommend for continuous traits with non-normally distributed residuals. INT-based
-    tests robustly control the type I error in settings where standard linear regression
-    does not, as when the residual distribution exhibits excess skew or kurtosis. Moreover,
-    INT-based tests dominate standard linear regression in terms of power. These tests
-    may be classified into two types. In direct INT (D-INT), the phenotype is itself
-    transformed. In indirect INT (I-INT), phenotypic residuals are transformed. The
-    omnibus test (O-INT) adaptively combines D-INT and I-INT into a single robust and
-    statistically powerful approach. See McCaw ZR, Lane JM, Saxena R, Redline S, Lin
-    X. "Operating characteristics of the rank-based inverse normal transformation for
-    quantitative trait analysis in genome-wide association studies" <doi:10.1111/biom.13214>.
+  summary: Inverse normal transformation (INT) based genetic association testing. These tests are recommend for continuous traits with non-normally distributed residuals. INT-based tests robustly control the type I error in settings where standard linear regression does not, as when the residual distribution exhibits excess
+    skew or kurtosis. Moreover, INT-based tests dominate standard linear regression in terms of power. These tests may be classified into two types. In direct INT (D-INT), the phenotype is itself transformed. In indirect INT (I-INT), phenotypic residuals are transformed. The omnibus test (O-INT) adaptively combines D-INT
+    and I-INT into a single robust and statistically powerful approach. See McCaw ZR, Lane JM, Saxena R, Redline S, Lin X. "Operating characteristics of the rank-based inverse normal transformation for quantitative trait analysis in genome-wide association studies" <doi:10.1111/biom.13214>.
 
   license_family: GPL3
   license_file:
-    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'
+    - {{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3
 
 extra:
   recipe-maintainers:
