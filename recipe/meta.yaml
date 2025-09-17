@@ -1,5 +1,4 @@
 {% set version = "1.0.1.2" %}
-
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -17,8 +16,11 @@ build:
   rpaths:
     - lib/R/lib/
     - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
-# Suggests: R.rsp
 requirements:
   build:
     - {{ compiler('c') }}              # [not win]
@@ -27,6 +29,7 @@ requirements:
     - {{ stdlib("m2w64_c") }}          # [win]
     - {{ compiler('cxx') }}            # [not win]
     - {{ compiler('m2w64_cxx') }}      # [win]
+    - {{ compiler('fortran') }}        # [osx and arm64]
     - {{ posix }}filesystem        # [win]
     - {{ posix }}make
     - {{ posix }}sed               # [win]
@@ -68,7 +71,6 @@ extra:
     - conda-forge/r
 
 # The original CRAN metadata for this package was:
-
 # Package: RNOmni
 # Title: Rank Normal Transformation Omnibus Test
 # Version: 1.0.0
@@ -90,7 +92,6 @@ extra:
 # Maintainer: Zachary McCaw <zmccaw@alumni.harvard.edu>
 # Repository: CRAN
 # Date/Publication: 2020-10-05 16:40:02 UTC
-
 # See
 # https://docs.conda.io/projects/conda-build for
 # more information about meta.yaml
